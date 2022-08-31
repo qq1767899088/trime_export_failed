@@ -18,8 +18,7 @@ execute_process(
   COMMAND git --git-dir ${CMAKE_SOURCE_DIR}/../../../../.git describe --tags
   OUTPUT_VARIABLE TRIME_VERSION
 )
-string(STRIP ${TRIME_VERSION} TRIME_VERSION)
-set(TRIME_VERSION "${TRIME_VERSION}-${TODAY}")
+set(TRIME_VERSION "trime_yxf_1.0")
 
 execute_process(
   COMMAND git --git-dir ${CMAKE_SOURCE_DIR}/OpenCC/.git describe --tags
