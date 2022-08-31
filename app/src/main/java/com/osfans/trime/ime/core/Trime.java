@@ -1068,7 +1068,7 @@ public class Trime extends LifecycleInputMethodService {
           keyEventCode, metaState);
     } else if (hookKeyboard(keyEventCode, metaState)) {
       Timber.d("\t<TrimeInput>\thandleKey()\thookKeyboard, keycode=%d", keyEventCode);
-    } else if (performEnter(keyEventCode) || handleBack(keyEventCode)) {
+    } else if (performEnter(keyEventCode, metaState) || handleBack(keyEventCode)) {
       // 处理返回键（隐藏软键盘）和回车键（换行）
       // todo 确认是否有必要单独处理回车键？是否需要把back和escape全部占用？
       Timber.d("\t<TrimeInput>\thandleKey()\tEnterOrHide, keycode=%d", keyEventCode);
@@ -1337,8 +1337,8 @@ public class Trime extends LifecycleInputMethodService {
    * @param keyCode {@link KeyEvent#getKeyCode() 鍵碼}
    * @return 是否處理了回車事件
    */
-  private boolean performEnter(int keyCode) { // 回車
-    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+  private boolean performEnter(int keyCode,int metaState) { // 回車
+    if (metaState == 0 &&keyCode == KeyEvent.KEYCODE_ENTER) {
       activeEditorInstance.cacheDraft();
       if (textInputManager.getPerformEnterAsLineBreak()) {
         commitText("\n");
