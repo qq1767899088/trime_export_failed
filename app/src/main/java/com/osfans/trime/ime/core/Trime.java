@@ -925,7 +925,7 @@ public class Trime extends LifecycleInputMethodService {
    * @return 是否處理了Back鍵事件
    */
   private boolean handleBack(int keyCode) {
-    if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_ESCAPE) {
+    if (keyCode == KeyEvent.KEYCODE_BACK ) {
       requestHideSelf(0);
       return true;
     }
