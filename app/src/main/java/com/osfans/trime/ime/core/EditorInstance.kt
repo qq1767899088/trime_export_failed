@@ -245,7 +245,7 @@ class EditorInstance(private val ims: InputMethodService) {
         )
         ic.beginBatchEdit()
         val eventTime = SystemClock.uptimeMillis()
-        if (metaState and KeyEvent.META_CTRL_ON != 0) {
+/*        if (metaState and KeyEvent.META_CTRL_ON != 0) {
             sendDownKeyEvent(eventTime, KeyEvent.KEYCODE_CTRL_LEFT, 0)
         }
         if (metaState and KeyEvent.META_ALT_ON != 0) {
@@ -261,12 +261,12 @@ class EditorInstance(private val ims: InputMethodService) {
         if (metaState and KeyEvent.META_SYM_ON != 0) {
             sendDownKeyEvent(eventTime, KeyEvent.KEYCODE_SYM, 0)
         }
-
+*/
         for (n in 0 until count) {
             sendDownKeyEvent(eventTime, keyEventCode, metaState)
             sendUpKeyEvent(eventTime, keyEventCode, metaState)
         }
-        if (metaState and KeyEvent.META_SHIFT_ON != 0) {
+ /*       if (metaState and KeyEvent.META_SHIFT_ON != 0) {
             sendUpKeyEvent(eventTime, KeyEvent.KEYCODE_SHIFT_LEFT, 0)
         }
         if (metaState and KeyEvent.META_ALT_ON != 0) {
@@ -283,7 +283,7 @@ class EditorInstance(private val ims: InputMethodService) {
         if (metaState and KeyEvent.META_SYM_ON != 0) {
             sendUpKeyEvent(eventTime, KeyEvent.KEYCODE_SYM, 0)
         }
-
+*/
         ic.endBatchEdit()
         return true
     }
