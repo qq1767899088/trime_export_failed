@@ -570,7 +570,7 @@ public class Keyboard {
   // 需要优化
   public boolean needUpCase() {
     if (mShiftKey != null) if (mShiftKey.isOn()) return true;
-    return hasModifier(KeyEvent.META_SHIFT_ON);
+    return hasModifier(KeyEvent.META_SHIFT_ON) && mModifierState == KeyEvent.META_SHIFT_ON;
   }
 
   /**
