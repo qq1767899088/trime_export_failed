@@ -687,15 +687,15 @@ public class Keyboard {
     boolean result = false;
 
     if (mShiftKey != null && !mShiftKey.isOn())
-      result = result || setModifier(KeyEvent.META_SHIFT_ON, false);
+      result = setModifier(KeyEvent.META_SHIFT_ON, false) || result;
     if (mAltKey != null && !mAltKey.isOn())
-      result = result || setModifier(KeyEvent.META_ALT_ON, false);
+      result = setModifier(KeyEvent.META_ALT_ON, false) || result;
     if (mCtrlKey != null && !mCtrlKey.isOn())
-      result = result || setModifier(KeyEvent.META_CTRL_ON, false);
+      result = setModifier(KeyEvent.META_CTRL_ON, false) || result;
     if (mMetaKey != null && !mMetaKey.isOn())
-      result = result || setModifier(KeyEvent.META_META_ON, false);
+      result = setModifier(KeyEvent.META_META_ON, false) || result;
     if (mSymKey != null && !mSymKey.isOn())
-      result = result || setModifier(KeyEvent.KEYCODE_SYM, false);
+      result = setModifier(KeyEvent.KEYCODE_SYM, false) || result;
     return result;
   }
 
