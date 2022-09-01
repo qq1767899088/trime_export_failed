@@ -51,7 +51,10 @@ jobs:
         run: |
           echo "set up keystore for release"
           echo "need help!!"
-          
+      
+      - name: 00_yxf
+        run: ./gradlew :spotlessApply
+        
       - name: Spotless code style check
         run: make spotless
 
