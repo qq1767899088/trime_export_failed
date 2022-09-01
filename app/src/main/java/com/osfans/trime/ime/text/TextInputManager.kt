@@ -150,7 +150,7 @@ class TextInputManager private constructor() :
                 Runnable { trime.handleKey(KeyEvent.KEYCODE_PAGE_UP, 0) },
                 Runnable { trime.selectLiquidKeyboard(SymbolKeyboardType.CANDIDATE) }
             )
-            it.visibility = if (Rime.getOption("_hide_candidate")) View.GONE else View.VISIBLE
+            it.visibility = if (Rime.getOption("ascii_mode")) View.GONE else View.VISIBLE
         }
 
         candidateView = uiBinding.main.candidateView.candidates.also {
@@ -254,6 +254,7 @@ class TextInputManager private constructor() :
             "ascii_mode" -> {
                 trime.inputFeedbackManager.ttsLanguage =
                     locales[if (value) 1 else 0]
+                candidateRoot?.visibility = if (!value) View.VISIBLE else View.GONE
             }
             "_hide_comment" -> trime.setShowComment(!value)
             "_hide_candidate" -> {
