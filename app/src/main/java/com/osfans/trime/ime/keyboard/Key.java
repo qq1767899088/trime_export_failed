@@ -48,6 +48,7 @@ public class Key {
   };
   public static final int[] KEY_STATE_NORMAL = {};
   public static final int[] KEY_STATE_PRESSED = {android.R.attr.state_pressed};
+  public static final int[] KEY_STATE_PRESSED2 = {android.R.attr.state_pressed, android.R.attr.state_checked};
   public static final int[][] KEY_STATES =
       new int[][] {
         KEY_STATE_PRESSED_ON, // 0    "hilited_on_key_back_color"   锁定时按下的背景
@@ -55,6 +56,7 @@ public class Key {
         KEY_STATE_NORMAL_ON, // 2     "on_key_back_color"           锁定时背景
         KEY_STATE_NORMAL_OFF, // 3    "off_key_back_color"          功能键背景
         KEY_STATE_PRESSED, // 4       "hilited_key_back_color"      按键按下的背景
+        KEY_STATE_PRESSED2, // 4       "hilited_key_back_color"      按键按下的背景
         KEY_STATE_NORMAL // 5         "key_back_color"              按键背景
       };
 
@@ -93,6 +95,7 @@ public class Key {
   private int x;
   private int y;
   private boolean pressed;
+  private boolean pressed2;
   private boolean on;
   private String popupCharacters;
   private int popupResId;
@@ -239,6 +242,9 @@ public class Key {
     this.y = y;
   }
 
+  public boolean isPressed2() {
+    return pressed2;
+  }
   public boolean isPressed() {
     return pressed;
   }
@@ -349,6 +355,9 @@ public class Key {
    *
    * @see #onReleased(boolean)
    */
+  public void onPressed2(boolean checkk) {
+    pressed2 = checkk ? (!pressed2) : false;
+  }
   public void onPressed() {
     pressed = !pressed;
   }
@@ -361,7 +370,15 @@ public class Key {
    * @see #onPressed()
    */
   public void onReleased(boolean inside) {
-    pressed = !pressed;
+  /*  try        
+    {
+	        Thread.sleep(100);
+    } 
+    catch(InterruptedException ex) 
+    {
+	        Thread.currentThread().interrupt();
+    }*/
+    pressed = pressed;
     if (getClick().isSticky()) on = !on;
   }
 
@@ -441,13 +458,13 @@ public class Key {
     } else {
       if (getClick().isSticky() || getClick().isFunctional()) {
         if (pressed) {
-          states = KEY_STATE_PRESSED_OFF;
+          states = pressed2 ? KEY_STATE_PRESSED2 : KEY_STATE_PRESSED_OFF;
         } else {
           states = KEY_STATE_NORMAL_OFF;
         }
       } else {
         if (pressed) {
-          states = KEY_STATE_PRESSED;
+          states = pressed2 ? KEY_STATE_PRESSED2 : KEY_STATE_PRESSED;
         }
       }
     }

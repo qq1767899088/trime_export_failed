@@ -117,6 +117,7 @@ public class KeyboardView extends View implements View.OnClickListener, Coroutin
 
   private Keyboard mKeyboard;
   private int mCurrentKeyIndex = NOT_A_KEY;
+  private int mCurrentKeyIndex2 = NOT_A_KEY;
   private int mLabelTextSize;
   private int mKeyTextSize;
   private ColorStateList mKeyTextColor;
@@ -369,6 +370,8 @@ public class KeyboardView extends View implements View.OnClickListener, Coroutin
     mKeyBackColor.addState(Key.KEY_STATE_NORMAL_ON, config.getColorDrawable("on_key_back_color"));
     mKeyBackColor.addState(Key.KEY_STATE_NORMAL_OFF, config.getColorDrawable("off_key_back_color"));
     mKeyBackColor.addState(
+        Key.KEY_STATE_PRESSED2, config.getColorDrawable("hilited_key_back_color2"));
+    mKeyBackColor.addState(
         Key.KEY_STATE_PRESSED, config.getColorDrawable("hilited_key_back_color"));
     mKeyBackColor.addState(Key.KEY_STATE_NORMAL, config.getColorDrawable("key_back_color"));
 
@@ -380,6 +383,7 @@ public class KeyboardView extends View implements View.OnClickListener, Coroutin
               config.getColor("hilited_off_key_text_color"),
               config.getColor("on_key_text_color"),
               config.getColor("off_key_text_color"),
+              config.getColor("hilited_key_text_color"),
               config.getColor("hilited_key_text_color"),
               config.getColor("key_text_color")
             });
@@ -1122,8 +1126,19 @@ public class KeyboardView extends View implements View.OnClickListener, Coroutin
         invalidateKey(oldKeyIndex);
       }
       if (mCurrentKeyIndex != NOT_A_KEY && keys.length > mCurrentKeyIndex) {
+      if (mCurrentKeyIndex2 != NOT_A_KEY && keys.length > mCurrentKeyIndex2) {
+        final Key newKey2 = keys[mCurrentKeyIndex2];
+        newKey2.onPressed2(mCurrentKeyIndex2 == mCurrentKeyIndex);
+        newKey2.onPressed();
+        invalidateKey(mCurrentKeyIndex2);
+      }
         final Key newKey = keys[mCurrentKeyIndex];
+        /*if(mCurrentKeyIndex2 == mCurrentKeyIndex){
+        newKey.onPressed2(mCurrentKeyIndex2 == mCurrentKeyIndex);
+	
+	}*/
         newKey.onPressed();
+        mCurrentKeyIndex2 = mCurrentKeyIndex;
         invalidateKey(mCurrentKeyIndex);
       }
     }
