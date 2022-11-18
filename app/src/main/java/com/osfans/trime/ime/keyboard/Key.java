@@ -358,6 +358,9 @@ public class Key {
   public void onPressed2(boolean checkk) {
     pressed2 = checkk ? (!pressed2) : false;
   }
+  public void resetPressed() {
+    pressed = false;
+  }
   public void onPressed() {
     pressed = !pressed;
   }

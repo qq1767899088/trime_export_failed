@@ -1129,7 +1129,7 @@ public class KeyboardView extends View implements View.OnClickListener, Coroutin
       if (mCurrentKeyIndex2 != NOT_A_KEY && keys.length > mCurrentKeyIndex2) {
         final Key newKey2 = keys[mCurrentKeyIndex2];
         newKey2.onPressed2(mCurrentKeyIndex2 == mCurrentKeyIndex);
-        newKey2.onPressed();
+        newKey2.resetPressed();
         invalidateKey(mCurrentKeyIndex2);
       }
         final Key newKey = keys[mCurrentKeyIndex];
